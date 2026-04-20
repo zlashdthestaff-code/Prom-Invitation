@@ -25,10 +25,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \Illuminate\Database\Eloquent\Model::unguard();
-        if (app()->environment('production')) {
+        // Force HTTPS on Railway
+        if (config('app.env') !== 'local') {
             \Illuminate\Support\Facades\URL::forceScheme('https');
         }
+
+        // Allow database saving
+        \Illuminate\Database\Eloquent\Model::unguard();
     }
 
     /**
