@@ -4,19 +4,19 @@ namespace App\Livewire;
 
 use App\Models\Participant;
 use Livewire\Component;
-use Livewire\Attributes\Rule;
 
 class RsvpForm extends Component
 {
-    #[Rule('required|min:2')]
+    // These MUST be public for wire:model to work
     public $name = '';
-
-    #[Rule('nullable|max:140')]
     public $message = '';
 
     public function submit()
     {
-        $this->validate();
+        $this->validate([
+            'name' => 'required|min:2',
+            'message' => 'nullable',
+        ]);
 
         Participant::create([
             'name' => $this->name,
@@ -24,7 +24,6 @@ class RsvpForm extends Component
         ]);
 
         $this->reset(['name', 'message']);
-        
         return redirect('/');
     }
 
