@@ -21,10 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Allow database mass-assignment
+        // 1. Allow saving to database
         Model::unguard();
 
-        // Force HTTPS for Railway Production
+        // 2. Force HTTPS for Railway Production
         if (app()->environment('production') || env('APP_URL') !== 'http://localhost') {
             URL::forceScheme('https');
         }

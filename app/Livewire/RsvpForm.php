@@ -7,41 +7,27 @@ use Livewire\Component;
 
 class RsvpForm extends Component
 {
-    public string $name = '';
-    public string $message = '';
+    public $name = '';
+    public $message = '';
 
-    protected function rules(): array
-    {
-        return [
-            'name' => 'required|string|min:2|max:255',
-            'message' => 'nullable|string|max:1000',
-        ];
-    }
+    protected $rules = [
+        'name' => 'required|min:2|max:50',
+        'message' => 'nullable|max:140',
+    ];
 
     public function submit()
     {
         $this->validate();
 
-        try {
-            Participant::create([
-                'name' => $this->name,
-                'message' => $this->message,
-            ]);
+        Participant::create([
+            'name' => $this->name,
+            'message' => $this->message,
+        ]);
 
-            // Reset fields after save
-            $this->reset(['name', 'message']);
-
-            // Optional flash message (recommended instead of silent redirect)
-            session()->flash('success', 'RSVP submitted successfully!');
-
-            return redirect('/');
-
-        } catch (\Exception $e) {
-            // Log error for Railway debugging
-            \Log::error('RSVP submission failed: ' . $e->getMessage());
-
-            session()->flash('error', 'Something went wrong. Please try again.');
-        }
+        $this->reset(['name', 'message']);
+        
+        // This will refresh the page and show the new guest in the list
+        return redirect('/');
     }
 
     public function render()
