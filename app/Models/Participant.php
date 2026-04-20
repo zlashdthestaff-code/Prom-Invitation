@@ -9,9 +9,6 @@ class Participant extends Model
 {
     use HasFactory;
 
-    // This tells Laravel exactly which table to look for
-    protected $table = 'participants';
-
-    // This allows the RSVP form to save data
+    // This is the most important line for your form to work!
     protected $fillable = ['name', 'message'];
 }
