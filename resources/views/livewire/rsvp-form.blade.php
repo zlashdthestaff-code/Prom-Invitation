@@ -1,45 +1,6 @@
-<?php
-
-use Livewire\Volt\Component;
-use App\Models\Participant;
-use Flux\Flux;
-
-new class extends Component {
-    public string $name = '';
-    public string $message = '';
-
-    public function with(): array
-    {
-        return [
-            'participants' => Participant::latest()->get(),
-        ];
-    }
-
-    public function save()
-    {
-        $this->validate([
-            'name' => 'required|min:2|max:50',
-            'message' => 'nullable|max:140',
-        ]);
-
-        Participant::create([
-            'name' => $this->name,
-            'message' => $this->message,
-        ]);
-
-        Flux::toast(
-            text: 'You are on the list, ' . $this->name . '!',
-            heading: 'RSVP Success',
-            variant: 'success'
-        );
-
-        $this->reset(['name', 'message']);
-    }
-}; ?>
-
 <div class="space-y-12">
     <section class="p-8 border border-white/10 shadow-2xl rounded-3xl bg-white/5 backdrop-blur-xl">
-        <form wire:submit="save" class="space-y-5">
+        <form wire:submit="submit" class="space-y-5">
             <flux:input 
                 wire:model="name" 
                 label="Full Name" 

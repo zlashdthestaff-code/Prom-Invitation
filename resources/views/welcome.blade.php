@@ -32,8 +32,7 @@
             </header>
 
             <main class="w-full max-w-md">
-                {{-- Calling the Volt component --}}
-                <livewire:rsvp-form />
+                @livewire('rsvp-form')
             </main>
 
             <footer class="mt-auto pt-10 text-white/20 text-[10px] tracking-widest uppercase">
