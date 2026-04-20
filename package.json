@@ -4,8 +4,7 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite",
-        "postinstall": "php -v"
+        "dev": "vite"
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.1.11",
@@ -19,8 +18,5 @@
         "@rollup/rollup-linux-x64-gnu": "4.9.5",
         "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
         "lightningcss-linux-x64-gnu": "^1.29.1"
-    },
-    "engines": {
-        "php": "8.4"
     }
 }
