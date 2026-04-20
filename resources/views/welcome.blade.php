@@ -10,14 +10,15 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    @livewireStyles
+
     <style>
-        /* Failsafe styles for 500 error debugging or slow CSS loads */
+        /* TKJ Failsafe: Inline styles to ensure visibility even if CSS fails */
         body {
             background-color: #0b1120 !important;
             color: white !important;
             margin: 0;
             font-family: 'Instrument Sans', sans-serif;
-            -webkit-font-smoothing: antialiased;
         }
         .gold-text { color: #d4af37 !important; }
         .card-bg { 
@@ -32,7 +33,7 @@
         
         <div class="max-w-2xl mx-auto text-center mb-12">
             <p class="gold-text font-medium tracking-widest uppercase mb-2">Official Invitation</p>
-            <h1 class="text-5xl font-extrabold tracking-tight mb-4">PROM NIGHT</h1>
+            <h1 class="text-5xl font-extrabold tracking-tight mb-4 uppercase">Prom Night</h1>
             <p class="text-xl text-gray-400">SMK Negeri 1 Tanjungpinang</p>
         </div>
 
@@ -44,21 +45,28 @@
             <h2 class="text-2xl font-bold text-center gold-text mb-8">The Guest List</h2>
             
             <div class="grid gap-4">
-                @forelse($guests as $participant)
-                    <div class="card-bg p-6 rounded-xl transition-all hover:scale-[1.02]">
-                        <h3 class="text-lg font-bold gold-text">{{ $participant->name }}</h3>
-                        <p class="text-gray-300 mt-1 italic">"{{ $participant->message }}"</p>
+                {{-- Using @isset to prevent 500 error if variable is missing --}}
+                @isset($guests)
+                    @forelse($guests as $participant)
+                        <div class="card-bg p-6 rounded-xl transition-all hover:scale-[1.02]">
+                            <h3 class="text-lg font-bold gold-text">{{ $participant->name }}</h3>
+                            <p class="text-gray-300 mt-1 italic">"{{ $participant->message }}"</p>
+                        </div>
+                    @empty
+                        <div class="text-center py-10 opacity-50">
+                            <p>No participants yet. Be the first!</p>
+                        </div>
+                    @endforelse
+                @else
+                    <div class="text-center py-10 opacity-50 border border-red-500/30 rounded-xl">
+                        <p class="text-red-400">Database connection active, but guest data is missing.</p>
                     </div>
-                @empty
-                    <div class="text-center py-10 opacity-50">
-                        <p>No guests yet. Be the first to join!</p>
-                    </div>
-                @endforelse
+                @endisset
             </div>
         </div>
 
         <footer class="mt-20 text-center text-gray-500 text-sm">
-            &copy; 2026 SMK Negeri 1 Tanjungpinang • Class of XII TKJ
+            &copy; 2026 SMK Negeri 1 Tanjungpinang • XII TKJ
         </footer>
     </div>
 
