@@ -27,6 +27,9 @@ class RsvpForm extends Component
         $this->reset(['name', 'message']);
         
         session()->flash('message', 'Registration successful!');
+        
+        // Refresh the page to show the new name in the list
+        return redirect('/');
     }
 
     public function render()

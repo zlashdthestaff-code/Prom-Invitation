@@ -1,16 +1,17 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Livewire Asset URL
     |--------------------------------------------------------------------------
-    | This forces Livewire to use the HTTPS URL for all its internal 
-    | JavaScript and POST requests, fixing the "Mixed Content" and 500 errors.
+    | Set to null to let the ServiceProvider's forceScheme(https) handle it.
     */
-    'asset_url' => null ,
 
-    'app_url' => 'https://prom-invitation-production.up.railway.app',
+    'asset_url' => null,
+
+    'app_url' => env('APP_URL', 'https://prom-invitation-production.up.railway.app'),
 
     'middleware_group' => ['web'],
 
@@ -19,4 +20,5 @@ return [
     'back_button_cache' => false,
 
     'render_on_redirect' => false,
+
 ];
