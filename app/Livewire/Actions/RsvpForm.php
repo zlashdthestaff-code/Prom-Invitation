@@ -4,16 +4,15 @@ namespace App\Livewire;
 
 use App\Models\Participant;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
 
 class RsvpForm extends Component
 {
+    #[Rule('required|min:2')]
     public $name = '';
-    public $message = '';
 
-    protected $rules = [
-        'name' => 'required|min:2|max:50',
-        'message' => 'nullable|max:140',
-    ];
+    #[Rule('nullable|max:140')]
+    public $message = '';
 
     public function submit()
     {
@@ -26,9 +25,6 @@ class RsvpForm extends Component
 
         $this->reset(['name', 'message']);
         
-        session()->flash('message', 'Registration successful!');
-        
-        // Refresh the page to show the new name in the list
         return redirect('/');
     }
 
