@@ -11,19 +11,25 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
-        /* Extra failsafe styles in case CSS load is slow */
+        /* Failsafe styles for 500 error debugging or slow CSS loads */
         body {
             background-color: #0b1120 !important;
             color: white !important;
             margin: 0;
             font-family: 'Instrument Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
         .gold-text { color: #d4af37 !important; }
-        .card-bg { background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .card-bg { 
+            background-color: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(212, 175, 55, 0.2); 
+            backdrop-filter: blur(10px);
+        }
     </style>
 </head>
 <body class="antialiased min-h-screen">
     <div class="relative py-12 px-6 lg:px-8">
+        
         <div class="max-w-2xl mx-auto text-center mb-12">
             <p class="gold-text font-medium tracking-widest uppercase mb-2">Official Invitation</p>
             <h1 class="text-5xl font-extrabold tracking-tight mb-4">PROM NIGHT</h1>
@@ -38,10 +44,10 @@
             <h2 class="text-2xl font-bold text-center gold-text mb-8">The Guest List</h2>
             
             <div class="grid gap-4">
-                @forelse($guests as $guest)
+                @forelse($guests as $participant)
                     <div class="card-bg p-6 rounded-xl transition-all hover:scale-[1.02]">
-                        <h3 class="text-lg font-bold gold-text">{{ $guest->name }}</h3>
-                        <p class="text-gray-300 mt-1 italic">"{{ $guest->message }}"</p>
+                        <h3 class="text-lg font-bold gold-text">{{ $participant->name }}</h3>
+                        <p class="text-gray-300 mt-1 italic">"{{ $participant->message }}"</p>
                     </div>
                 @empty
                     <div class="text-center py-10 opacity-50">
@@ -55,5 +61,7 @@
             &copy; 2026 SMK Negeri 1 Tanjungpinang • Class of XII TKJ
         </footer>
     </div>
+
+    @livewireScripts
 </body>
 </html>
