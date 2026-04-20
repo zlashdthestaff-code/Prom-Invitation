@@ -1,10 +1,7 @@
 <?php
 
-use App\Models\Participant;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome', [
-        'guests' => Participant::latest()->get()
-    ]);
+    return "<h1>TKJ Connectivity Test</h1><p>If you see this, Nixpacks is working perfectly.</p>";
 });
