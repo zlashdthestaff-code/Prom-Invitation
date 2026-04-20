@@ -24,7 +24,7 @@
 
         <button type="submit" 
                 style="width: 100%; background: #b45309; color: white; padding: 16px; border: none; border-radius: 12px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; letter-spacing: 0.05em; transition: 0.2s;">
-            Submit RSVP 🥂
+            Submit 🥂
         </button>
     </form>
 </div>
