@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Models\Participant;
 
 Route::get('/', function () {
-    return "<h1>TKJ Connectivity Test</h1><p>If you see this, Nixpacks is working perfectly.</p>";
+    $count = Participant::count();
+    return "<h1>Database Test</h1><p>Connection successful! Total participants: " . $count . "</p>";
 });
