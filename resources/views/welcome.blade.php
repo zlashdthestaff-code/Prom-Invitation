@@ -8,20 +8,21 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600|playfair-display:700" rel="stylesheet" />
 
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     @livewireStyles
     <style>
         :root {
-            --bg-color: #0b1120;
-            --card-bg: #111827;
-            --gold-text: #d4af37;
-            --body-text: #e2e8f0;
+            --bg-color: #0b1120; /* Dark Blue from your original design */
+            --card-bg: #111827; /* Slightly lighter gray for the card */
+            --gold-text: #d4af37; /* The Gold Color */
+            --body-text: #e2e8f0; /* White/Gray text */
         }
         body {
             background-color: var(--bg-color) !important;
             color: var(--body-text) !important;
             font-family: 'Instrument Sans', sans-serif;
             margin: 0;
-            min-height: 100vh;
+            min-h-screen: 100vh;
             padding: 2rem;
         }
         .playfair { font-family: 'Playfair Display', serif; }
@@ -57,23 +58,14 @@
     </div>
 
     @isset($guests)
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            @forelse($guests as $participant)
-                <div class="card-guest" style="width: 100%;">
-                    <div style="display: flex; justify-content: space-between; align-items: start;">
-                        <div>
-                            <h3 class="text-lg font-bold gold-text" style="margin: 0;">{{ $participant->name }}</h3>
-                            <p class="guest-message">"{{ $participant->message }}"</p>
-                        </div>
-                        <span style="font-size: 0.7rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; margin-left: 10px;">
-                            {{ $participant->created_at->diffForHumans() }}
-                        </span>
-                    </div>
-                </div>
-            @empty
-                <div style="text-align: center; opacity: 0.5;">No guests yet. Be the first!</div>
-            @endforelse
-        </div>
+        @forelse($guests as $participant)
+            <div class="card-guest">
+                <h3 class="text-lg font-bold gold-text">{{ $participant->name }}</h3>
+                <p class="guest-message">"{{ $participant->message }}"</p>
+            </div>
+        @empty
+            <div style="text-align: center; opacity: 0.5;">No guests yet. Be the first!</div>
+        @endforelse
     @endisset
 
     @livewireScripts

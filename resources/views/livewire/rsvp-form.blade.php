@@ -20,7 +20,7 @@
 
         <button type="submit" 
                 style="background: #b45309; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; text-transform: uppercase; cursor: pointer; transition: background 0.2s; letter-spacing: 0.05em;">
-            I'M ATTENDING 🥂
+            I'm attending 🥂
         </button>
     </form>
 </div>
