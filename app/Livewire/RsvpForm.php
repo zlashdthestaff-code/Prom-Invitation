@@ -8,7 +8,7 @@ use Livewire\Component;
 class RsvpForm extends Component
 {
     public $name = '';
-    public $attendance = 'yes'; // Default selection
+    public $attendance = 'yes'; // Default value
 
     protected $rules = [
         'name' => 'required|min:2|max:50',
@@ -25,9 +25,7 @@ class RsvpForm extends Component
         ]);
 
         $this->reset(['name']);
-        
-        $message = $this->attendance === 'yes' ? 'See you there! 🔥' : 'We will miss you! 😢';
-        session()->flash('message', $message);
+        session()->flash('message', $this->attendance === 'yes' ? 'See you there! 🔥' : 'Response recorded. 😢');
     }
 
     public function render()
