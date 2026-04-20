@@ -114,7 +114,7 @@
     </div>
 
     <footer style="margin-top: 2rem; opacity: 0.4; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600;">
-        &copy; 2026 XII TKJ Class
+        &copy; 2026 Astraevo
     </footer>
 
     @livewireScripts
