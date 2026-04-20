@@ -5,7 +5,7 @@
         </div>
     @endif
 
-    <form wire:submit.prevent="submit" style="display: flex; flex-direction: column; gap: 15px;">
+    <form style="display: flex; flex-direction: column; gap: 15px;">
         <div>
             <label style="display: block; margin-bottom: 5px; font-weight: bold; color: rgba(255,255,255,0.9);">Full Name</label>
             <input type="text" wire:model="name" placeholder="Enter your name">
@@ -14,13 +14,19 @@
 
         <div>
             <label style="display: block; margin-bottom: 5px; font-weight: bold; color: rgba(255,255,255,0.9);">Leave a message</label>
-            <textarea wire:model="message" placeholder="Can't wait for the night!" rows="4"></textarea>
-            @error('message') <span style="color: #f87171; font-size: 0.8rem;">{{ $message }}</span> @enderror
+            <textarea wire:model="message" placeholder="Can't wait for the night!" rows="3"></textarea>
         </div>
 
-        <button type="submit" 
-                style="background: #b45309; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; text-transform: uppercase; cursor: pointer; transition: background 0.2s; letter-spacing: 0.05em;">
+        {{-- Primary Button --}}
+        <button type="button" wire:click="submit" 
+                style="background: #b45309; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; text-transform: uppercase; cursor: pointer;">
             I'M ATTENDING 🥂
+        </button>
+
+        {{-- Secondary "Decline" Button --}}
+        <button type="button" wire:click="decline" 
+                style="background: transparent; color: rgba(255,255,255,0.5); padding: 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; font-weight: bold; font-size: 0.8rem; text-transform: uppercase; cursor: pointer;">
+            Sorry, I can't make it 😢
         </button>
     </form>
 </div>

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('message')->nullable();
+            // Add this line:
+            $table->string('attendance')->default('yes'); // 'yes' or 'no'
             $table->timestamps();
         });
     }
