@@ -25,10 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->configureCommands();
-        $this->configureModels();
-        $this->configureUrl();
-        $this->configureDates();
+        \Illuminate\Database\Eloquent\Model::unguard();
+        if (app()->environment('production')) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
     }
 
     /**
