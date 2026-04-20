@@ -25,13 +25,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Force HTTPS on Railway
-        if (config('app.env') !== 'local') {
-            \Illuminate\Support\Facades\URL::forceScheme('https');
-        }
-
-        // Allow database saving
         \Illuminate\Database\Eloquent\Model::unguard();
+
+        if (app()->environment('production')) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+            
+            // This is the "Magic Fix" for the Unexpected Token '<'
+            \Livewire\Livewire::setUpdateRoute(function ($handle) {
+                return \Illuminate\Support\Facades\Route::post('/livewire/update', $handle);
+            });
+
+            \Livewire\Livewire::setScriptRoute(function ($handle) {
+                return \Illuminate\Support\Facades\Route::get('/livewire/livewire.js', $handle);
+            });
+        }
     }
 
     /**
