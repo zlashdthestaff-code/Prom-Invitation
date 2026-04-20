@@ -8,36 +8,26 @@ use Livewire\Component;
 class RsvpForm extends Component
 {
     public $name = '';
-    public $message = '';
+    public $attendance = 'yes'; // Default selection
+
+    protected $rules = [
+        'name' => 'required|min:2|max:50',
+        'attendance' => 'required|in:yes,no',
+    ];
 
     public function submit()
     {
-        $this->validate(['name' => 'required|min:2']);
+        $this->validate();
 
         Participant::create([
             'name' => $this->name,
-            'message' => $this->message,
-            'attendance' => 'yes', // Hardcoded for this button
+            'attendance' => $this->attendance,
         ]);
 
-        $this->reset(['name', 'message']);
-        session()->flash('message', 'See you there! 🔥');
-        return redirect('/');
-    }
-
-    public function decline()
-    {
-        $this->validate(['name' => 'required|min:2']);
-
-        Participant::create([
-            'name' => $this->name,
-            'message' => $this->message,
-            'attendance' => 'no', // They aren't coming
-        ]);
-
-        $this->reset(['name', 'message']);
-        session()->flash('message', 'We will miss you! 😢');
-        return redirect('/');
+        $this->reset(['name']);
+        
+        $message = $this->attendance === 'yes' ? 'See you there! 🔥' : 'We will miss you! 😢';
+        session()->flash('message', $message);
     }
 
     public function render()
