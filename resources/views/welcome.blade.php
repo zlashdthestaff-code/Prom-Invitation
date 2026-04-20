@@ -10,9 +10,8 @@
 
     @livewireStyles
     <style>
-        /* The Global Reset */
         * {
-            box-sizing: border-box; /* Crucial: Padding won't push width anymore */
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
@@ -24,17 +23,42 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            /* The GIF implementation */
+            background-image: url('{{ asset("images/star.gif") }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: var(--bg-color); 
+            
             color: #e2e8f0;
             font-family: 'Instrument Sans', sans-serif;
             min-height: 100vh;
             width: 100%;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Vertical center */
+            justify-content: center;
             padding: 20px;
+            position: relative;
+        }
+
+        /* The Dark Overlay - Keeps the UI readable over the blinking GIF */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 17, 32, 0.7); /* Adjust darkness here */
+            z-index: 0;
+        }
+
+        .header-section, .card-rsvp, footer {
+            position: relative;
+            z-index: 1; /* Pushes content above the overlay */
         }
 
         .header-section {
@@ -46,32 +70,34 @@
 
         .prom-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 10vw, 4rem); /* Responsive font size */
+            font-size: clamp(2.8rem, 12vw, 4rem);
             color: var(--gold-text);
             text-transform: uppercase;
             line-height: 1.1;
             margin: 1rem 0;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         .card-rsvp {
             width: 100%;
-            max-width: 400px; /* Locked width for mobile */
+            max-width: 400px;
             background-color: var(--card-bg);
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             border-radius: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
 
         .gold-label {
             color: var(--gold-text);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             font-size: 0.7rem;
-            border: 1px solid rgba(212,175,55,0.3);
-            padding: 4px 12px;
+            border: 1px solid rgba(212,175,55,0.4);
+            padding: 5px 15px;
             border-radius: 999px;
             display: inline-block;
+            background: rgba(212,175,55,0.05);
         }
     </style>
 </head>
@@ -80,15 +106,15 @@
     <div class="header-section">
         <div class="gold-label">Official Invitation</div>
         <h1 class="prom-title">Prom Night</h1>
-        <p style="color: #94a3b8;">SMK Negeri 1 Tanjungpinang</p>
+        <p style="color: #94a3b8; letter-spacing: 0.1em; font-weight: 500;">SMK Negeri 1 Tanjungpinang</p>
     </div>
 
     <div class="card-rsvp">
         @livewire('rsvp-form')
     </div>
 
-    <footer style="margin-top: 2rem; opacity: 0.3; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;">
-        &copy; 2026 Astraevo
+    <footer style="margin-top: 2rem; opacity: 0.4; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600;">
+        &copy; 2026 XII TKJ Class
     </footer>
 
     @livewireScripts
