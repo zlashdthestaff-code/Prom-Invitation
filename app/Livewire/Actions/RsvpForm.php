@@ -11,8 +11,8 @@ class RsvpForm extends Component
     public $message = '';
 
     protected $rules = [
-        'name' => 'required|min:2',
-        'message' => 'required|min:2',
+        'name' => 'required|min:2|max:50',
+        'message' => 'nullable|max:140',
     ];
 
     public function submit()
@@ -26,9 +26,7 @@ class RsvpForm extends Component
 
         $this->reset(['name', 'message']);
         
-        session()->flash('message', 'Registered successfully!');
-        
-        return redirect('/');
+        session()->flash('message', 'Registration successful!');
     }
 
     public function render()
