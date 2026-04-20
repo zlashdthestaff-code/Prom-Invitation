@@ -23,28 +23,38 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
-    --color-accent-foreground: var(--color-white);
-}
+    /* Custom Prom Colors */
+    --color-prom-night: #0b1120;
+    --color-prom-gold: #d4af37;
 
-@layer theme {
-    .dark {
-        --color-accent: var(--color-white);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
-    }
+    --color-accent: var(--color-white);
+    --color-accent-content: var(--color-white);
+    --color-accent-foreground: var(--color-zinc-900);
 }
 
 @layer base {
+    /* FORCE THE THEME COLORS */
+    html, body {
+        background-color: #0b1120 !important; /* Midnight Blue */
+        color: #ffffff !important;
+    }
 
     *,
     ::after,
     ::before,
     ::backdrop,
     ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
+        border-color: var(--color-zinc-800, currentColor);
     }
+}
+
+/* Fix for invisible Guest List text */
+h3, p, span, label {
+    color: white;
+}
+
+.text-brand-gold {
+    color: #d4af37;
 }
 
 [data-flux-field]:not(ui-radio, ui-checkbox) {
@@ -52,15 +62,11 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight text-white;
 }
 
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-zinc-900;
 }
-
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
