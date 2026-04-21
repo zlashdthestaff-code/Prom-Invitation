@@ -105,7 +105,7 @@
     
     <div class="header-section">
         <div class="gold-label">Official Invitation</div>
-        <h1 class="prom-title">Prom Night</h1>
+        <h1 class="prom-title">Prom Night 67</h1>
         <p style="color: #94a3b8; letter-spacing: 0.1em; font-weight: 500;">SMK Negeri 1 Tanjungpinang</p>
     </div>
 
