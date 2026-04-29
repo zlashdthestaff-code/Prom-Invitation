@@ -9,6 +9,6 @@ class Participant extends Model
 {
     use HasFactory;
 
-    // This is the most important line for your form to work!
-    protected $fillable = ['name', 'message'];
+    // Added 'attendance' to allow saving the yes/no status
+    protected $fillable = ['name', 'message', 'attendance'];
 }
